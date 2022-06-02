@@ -7,5 +7,25 @@ form.dailytaskform {
 }
 
 form.dailytaskform > * {
-    width: 100px;
+    width: 200px;
+}
+
+.dailytasklist h1 {
+    color: #333;
+    text-transform:uppercase;
+    font-size: 24px;
+    font-family:'Times New Roman', Times, serif;
+    /*'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;*/
+}
+.dailytasklist h1::first-letter {
+    font-size: 26px;
+}
+
+
+.dailytasklist ul.todolist {
+    color: black;
+    font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif
+}
+.dailytasklist ul.todolist li {
+    border-bottom: 2px solid pink;
 }
