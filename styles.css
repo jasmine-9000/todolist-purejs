@@ -1,0 +1,10 @@
+h1 {
+    color: red;
+}
+form.dailytaskform {
+    display: flex;
+    flex-direction: column;;
+}
+form.dailytaskform * {
+    width: 100%
+}
