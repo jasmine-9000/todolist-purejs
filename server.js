@@ -24,14 +24,12 @@ const dbFile = './db.json';         // db file to write to since we don't know h
  **********************/
 
 const router = express.Router()
-const app = express();                  
+const app = express();                
 app.use("/", router);
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
 
-
-// fixing CORS issues
-app.use(cors());
+app.use(cors());// fixing CORS issues
 app.use(function(req,res,next) {
     res.setHeader('Access-Control-Allow-Origin', '*'); // allow anyone in the world to request things.
     res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
@@ -39,8 +37,12 @@ app.use(function(req,res,next) {
     res.setHeader('Access-Control-Allow-Credentials', true);
     next();
 })
-
-
+/*******************
+ * 
+ * 
+ * Database functions
+ * 
+ */
 
 // Initial db reading
 let dailyTasksDB, generalTasksDB;
@@ -55,7 +57,7 @@ fs.readFile(dbFile, (err, data) => {
     dailyTasksDB = db.dailytasks;
     generalTasksDB = db.generaltasks;
 })
-
+ 
 
 async function updateDailyDB(task= null) {
     if(!task) return;
@@ -143,3 +145,17 @@ app.listen(PORT, () => {
     console.log(`Listening on port ${PORT}...`);
 })
 
+/*
+    New JSON File structure:
+
+    {
+        uuid1: {
+            "name": task1name,
+            "date": task1name
+        },
+        uuid2: {
+            "name": task2name,
+            "date": task2name
+        }
+    }
+*/

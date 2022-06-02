@@ -3,8 +3,9 @@ h1 {
 }
 form.dailytaskform {
     display: flex;
-    flex-direction: column;;
+    flex-direction: column;
 }
-form.dailytaskform * {
-    width: 100%
+
+form.dailytaskform > * {
+    width: 100px;
 }
