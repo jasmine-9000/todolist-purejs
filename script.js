@@ -8,23 +8,23 @@ window.addEventListener("load", async () => {
 
 })
 
-const method = "http"
-const IPaddress = "192.168.1.92";
+const PROTOCOL = "http"
+const IP_ADDRESS = "192.168.1.92";
 const PORT = 80;
 
 function postnewtask(task) {
-    const response = fetch(`${method}://${IPaddress}:${PORT}/db/dailytasks`, 
+    const response = fetch(`${PROTOCOL}://${IP_ADDRESS}:${PORT}/db/dailytasks`, 
                             {
                                 method: 'POST', 
                                 headers: {'Content-Type': 'application/json',
-                                          'Access-Control-Allow-Origin': IPaddress},
+                                          'Access-Control-Allow-Origin': IP_ADDRESS},
                                 body: JSON.stringify(task)
                             });
                             return response;
 }
 
 async function retrievedailytaskspromise() {
-    const data = fetch(`${method}://${IPaddress}:${PORT}/db/dailytasks`)
+    const data = fetch(`${method}://${IP_ADDRESS}:${PORT}/db/dailytasks`)
                     .then(response => {
                         if(response.ok) {
                             return response.json()
