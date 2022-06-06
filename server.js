@@ -8,7 +8,6 @@ const express = require('express');             // is an NPM package to install.
 const bodyParser = require('body-parser');      // is an NPM package to install. Parses incoming request bodies in a middleware.
 const fs = require('fs');                       // included with every distro of Node.js
 const cors = require('cors');                   // is an NPM package to install. Resolves CORS errors
-
 // MongoDB stuff
 const {MongoClient} = require('mongodb');
 
@@ -19,7 +18,7 @@ const {MongoClient} = require('mongodb');
  ******************************/
 const PORT = 80;                    // port used on the server. Default port should be 80.
 const dbFile = './db.json';         // db file to write to since we don't know how to use databases.
-const mongodbAddr = "http://localhost:27017"
+
 
 
 /*********************
@@ -35,6 +34,7 @@ app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
 
 app.use(cors());// fixing CORS issues
+// just in case CORS() middleware doesn't work, set access-control parameters ourselves.
 app.use(function(req,res,next) {
     res.setHeader('Access-Control-Allow-Origin', '*'); // allow anyone in the world to request things.
     res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
@@ -49,9 +49,10 @@ app.use(function(req,res,next) {
  * 
  */
 
-const mclient = new MongoClient(mongodbAddr);
+const mongodbURI = "mongodb://localhost:27017/"
+const mclient = new MongoClient(mongodbURI);
 
-await mclient.connect();
+// mclient.connect();
 
 // Initial db reading
 let dailyTasksDB, generalTasksDB;
@@ -68,7 +69,7 @@ fs.readFile(dbFile, (err, data) => {
 })
  
 
-async function updateDailyDB(task= null) {
+function updateDailyDB(task= null) {
     if(!task) return;
     let taskName = task.name
     let taskDate = task.date;
@@ -113,6 +114,11 @@ app.post('/db/dailytasks', (req, res) => {
     res.json(getDailyDB());
     res.end();
 })
+
+app.get('/db/dailytasksmongo/getall', (req, res) => {
+    mclient.connect('');
+})
+
 
 app.get('/db/generaltasks', (req, res) => {
     res.json(

@@ -1,6 +1,6 @@
 {
   "dailytasks": {
-    "123": "456",
+    "123": "",
     "213": "all night long",
     "1523": "4567",
     "1524": "4567",
@@ -13,7 +13,8 @@
     "do the professional links!": "now!!!!",
     "start prepping the bank": "this weekend",
     "clean up iphone": "now!!!!",
-    "Make your own API and push to heroku!": "this weekend"
+    "Make your own API and push to heroku!": "this weekend",
+    "Fill out Ballot and turn it in and vote": "Now!!!"
   },
   "generaltasks": {
     "tasks": {

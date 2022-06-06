@@ -24,7 +24,7 @@ function postnewtask(task) {
 }
 
 async function retrievedailytaskspromise() {
-    const data = fetch(`${method}://${IP_ADDRESS}:${PORT}/db/dailytasks`)
+    const data = fetch(`${PROTOCOL}://${IP_ADDRESS}:${PORT}/db/dailytasks`)
                     .then(response => {
                         if(response.ok) {
                             return response.json()
