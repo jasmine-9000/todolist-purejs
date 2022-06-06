@@ -9,6 +9,9 @@ const bodyParser = require('body-parser');      // is an NPM package to install.
 const fs = require('fs');                       // included with every distro of Node.js
 const cors = require('cors');                   // is an NPM package to install. Resolves CORS errors
 
+// MongoDB stuff
+const {MongoClient} = require('mongodb');
+
 /******************************
  * 
  * GLOBAL VARIABLES
@@ -16,6 +19,8 @@ const cors = require('cors');                   // is an NPM package to install.
  ******************************/
 const PORT = 80;                    // port used on the server. Default port should be 80.
 const dbFile = './db.json';         // db file to write to since we don't know how to use databases.
+const mongodbAddr = "http://localhost:27017"
+
 
 /*********************
  * 
@@ -43,6 +48,10 @@ app.use(function(req,res,next) {
  * Database functions
  * 
  */
+
+const mclient = new MongoClient(mongodbAddr);
+
+await mclient.connect();
 
 // Initial db reading
 let dailyTasksDB, generalTasksDB;
