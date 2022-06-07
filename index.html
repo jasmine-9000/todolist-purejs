@@ -9,18 +9,18 @@
 </head>
 <body>
     <div class="container">
+        <h1 class="header">
+            <span class="b4"></span>
+            <span class="b3"></span>
+            <span class="b2"></span>
+            <span class="b1"></span>
+                <span class="title">Daily Tasks</span>
+            <span class="b1"></span>
+            <span class="b2"></span>
+            <span class="b3"></span>
+            <span class="b4"></span>
+        </h1>
         <div class="dailytasklist">
-            
-            <h1><span class="b4"></span>
-                <span class="b3"></span>
-                <span class="b2"></span>
-                <span class="b1"></span>
-                    <span class="title">Daily Tasks</span>
-                <span class="b1"></span>
-                <span class="b2"></span>
-                <span class="b3"></span>
-                <span class="b4"></span></h1>
-            
             <ul id="daily_todolist" class="todolist">
                 <!--<li>
                     
@@ -41,7 +41,11 @@
         <div class="generaltasklist">
             <h1>Tasks to do eventually</h1>
             <ul id="general_todolist" class="todolist">
-                <li>Fill out later</li>
+                <li>
+                    <label class="container1">
+                        <input type="checkbox">
+                        <span class="checkmark"></span>
+                    </label>Fill out later</li>
             </ul>
         </div>
         
@@ -49,8 +53,20 @@
 
         <div class="toggle_finishedtasklist">Show Finished Tasks</div>
         <div class="finishedtasklist">
-            <h1>Finished Tasks</h1>
-            <ul id="finished_tasklist" class="todolist"></ul>
+            <h1 class="header">
+                <span class="b4"></span>
+                <span class="b3"></span>
+                <span class="b2"></span>
+                <span class="b1"></span>
+                    <span class="title">Finished Tasks</span>
+                <span class="b1"></span>
+                <span class="b2"></span>
+                <span class="b3"></span>
+                <span class="b4"></span>
+            </h1>
+            <ul id="finished_tasklist" class="todolist">
+                <li>Place finished tasks here</li>
+            </ul>
         </div>
     </div>
 </body>

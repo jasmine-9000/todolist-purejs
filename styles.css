@@ -1,27 +1,70 @@
+:root {
+    --gap-width: 30px;
+    --border-color: #ccc;
+}
+
 h1 {
     color: red;
 }
 
-.container {
+.container2 {
     border-width: 0px 2px 2px 2px;
     border-color: black;
     border-style: solid;
     padding: 0px 10px 10px 10px;
 }
-.dailytasklist h1 {
-    border-top: 2px solid black;
-    text-align: center;
+.dailytasklist {
+    border-width: 0px 2px 2px 2px;
+    border-color: var(--border-color);
+    border-style: solid;
+    padding: 0px 10px;
+    position: relative;
+}
+/* fill the gap */
+.dailytasklist::before,
+.dailytasklist::after
+{
+    content: '';
+    position: absolute;
+    height: var(--gap-width);
+    width: 0px;
+    
+    top: calc(var(--gap-width) * -1);
+    border-width: 1px;
+    border-style: solid;
+    border-color: var(--border-color);
+}
+.dailytasklist::before {
+    left: -2px;
+}
+.dailytasklist::after {
+    right: -2px;
+}
+/* end fill gap  */
 
+h1.header {
+    color: #333;
+    text-transform:uppercase;
+    font-size: 24px;
+    font-family:'Times New Roman', Times, serif;
+    /*'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;*/
+}
+h1.header::first-letter {
+    font-size: 26px;
+}
+h1.header {
+    text-align: center;
+    position: relative;
 }
 
-.dailytasklist h1 .title {
+h1.header .title {
     padding: 0 60px;
 }
 
-.dailytasklist h1 .b1,
-.dailytasklist h1 .b2,
-.dailytasklist h1 .b3,
-.dailytasklist h1 .b4 {
+h1.header .b1,
+h1.header .b2,
+h1.header .b3,
+h1.header .b4 {
     display: inline-block;
     width: 10px;
     height: 10px;
@@ -30,10 +73,46 @@ h1 {
     border-radius: 99px;
     transform: translateY(-2px);
 }
-.dailytasklist h1 .b1 { background-color: #97d452;}
-.dailytasklist h1 .b2 { background-color: #0fa9ff;}
-.dailytasklist h1 .b3 { background-color: #f4c100;}
-.dailytasklist h1 .b4 { background-color: #ff2795;} 
+h1.header .b1 { background-color: #97d452;}
+h1.header .b2 { background-color: #0fa9ff;}
+h1.header .b3 { background-color: #f4c100;}
+h1.header .b4 { background-color: #ff2795;} 
+
+h1.header::before,
+h1.header::after {
+    position: absolute;
+    top: 13px;
+    display:inline-block;
+    content: '';
+    width: 25%;
+    height: 0px;
+    border: 1px solid var(--border-color);
+}
+
+h1.header::before {
+    left: 0px;
+}
+
+h1.header::after {
+    right: 0px;
+}
+
+@media screen and (max-width: 1000px) {
+    h1.header::before,
+    h1.header::after
+     {
+        display: none;
+    }
+}
+/* 1400px + 40px for padding */
+@media screen and (min-width: 1440px) {
+    .container 
+    {
+       width: 1400px; 
+    }
+}
+
+
 
 form.dailytaskform { 
     display: flex;
@@ -44,24 +123,19 @@ form.dailytaskform > * {
     width: 200px;
 }
 
-.dailytasklist h1 {
-    color: #333;
-    text-transform:uppercase;
-    font-size: 24px;
-    font-family:'Times New Roman', Times, serif;
-    /*'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;*/
-}
-.dailytasklist h1::first-letter {
-    font-size: 26px;
-}
 
-
-.dailytasklist ul.todolist {
+.dailytasklist ul.todolist,
+.generaltasklist ul.todolist,
+.finishedtasklist ul.todolist
+{
     color: black;
     font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif
 }
 
-.dailytasklist ul.todolist li {
+.dailytasklist ul.todolist li,
+.generaltasklist ul.todolist li,
+.finishedtasklist ul.todolist li
+{
     border-bottom: 2px solid pink;
     position: relative;
     list-style: none;
@@ -136,3 +210,4 @@ form.dailytaskform > * {
     -ms-transform: rotate(45deg);
     transform: rotate(45deg);
   }
+
