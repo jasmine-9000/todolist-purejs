@@ -3,10 +3,6 @@
     --border-color: #ccc;
 }
 
-h1 {
-    color: red;
-}
-
 .container2 {
     border-width: 0px 2px 2px 2px;
     border-color: black;
@@ -104,6 +100,7 @@ h1.header::after {
         display: none;
     }
 }
+/* on large screens, limit the width so it looks good. */
 /* 1400px + 40px for padding */
 @media screen and (min-width: 1440px) {
     .container 
@@ -112,16 +109,62 @@ h1.header::after {
     }
 }
 
+/* on mobile, limit the width of the things so it fits */
 
+@media screen and (max-width: 500px) {
+    h1.header .title {
+        padding: 0 10px;
+    }
+}
 
-form.dailytaskform { 
+/* Form styling */
+
+form.dailytaskform,
+form.generaltaskform
+ { 
     display: flex;
     flex-direction: column;
+    width: 100%;
+    column-gap: 2px;
+    row-gap: 2px;
 }
 
-form.dailytaskform > * {
-    width: 200px;
+/* Source: */
+/* https://developer.mozilla.org/en-US/docs/Web/CSS/background-color */
+form.dailytaskform input[type="submit"],
+form.generaltaskform input[type="submit"],
+button
+{
+    background-color: #f1368d;
+    color: #eee;
+    font-weight: 700;
+    font-size: 22px;
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    border-radius: 99px;
+    border-width: 10px;
+    border-color: #cf037c;
+    width: min-content;
+    padding: 10px 20px 10px 20px;
 }
+button {
+    width: 335px;
+}
+
+
+form.dailytaskform input[type="textarea"],
+form.generaltaskform input[type="textarea"] {
+   border: 2px solid pink;
+   height: 125px;
+   font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+   text-align: left;
+   justify-content: left;
+   align-items: top;
+   vertical-align: top;
+}
+
+/* end form styling */
+
+
 
 
 .dailytasklist ul.todolist,
