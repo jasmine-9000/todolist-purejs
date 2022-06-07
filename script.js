@@ -51,8 +51,21 @@ function displaydailytasks(dailytaskslist) {
     })
 }
 
-function addtasktolistDOM(taskAsString, element) {
+function addtasktolistDOM(taskAsString, element,checked=false) {
     let task = document.createElement('li' );
+
+    // let samplecheckboxstr = "<label class='container1'><input type='checkbox'><span class='checkmark'></span></label>"
+    let checkboxcont = document.createElement('label');
+    let checkbox = document.createElement('input')
+    let checkmark = document.createElement('span');
+    checkmark.setAttribute('class', 'checkmark')
+    checkbox.setAttribute('type', 'checkbox');
+    checkbox.checked = checked;
+    checkboxcont.setAttribute('class', 'container1');
+    checkboxcont.appendChild(checkbox);
+    checkboxcont.appendChild(checkmark);
+
+    task.appendChild(checkboxcont);
     task.appendChild(document.createTextNode(taskAsString));
     element.appendChild(task);
 }

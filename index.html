@@ -10,8 +10,27 @@
 <body>
     <div class="container">
         <div class="dailytasklist">
-            <h1>Daily Tasks</h1>
+            
+            <h1><span class="b4"></span>
+                <span class="b3"></span>
+                <span class="b2"></span>
+                <span class="b1"></span>
+                    <span class="title">Daily Tasks</span>
+                <span class="b1"></span>
+                <span class="b2"></span>
+                <span class="b3"></span>
+                <span class="b4"></span></h1>
+            
             <ul id="daily_todolist" class="todolist">
+                <!--<li>
+                    
+                    <label class="container1">
+                        <input type="checkbox">
+                        <span class="checkmark"></span>
+                    </label>
+                    Todo list item sample
+                
+                </li>-->
             </ul>
         </div>
         <form class="dailytaskform" id="add_daily_task">
@@ -20,10 +39,18 @@
             <input type="submit" value="Add New Daily Task">
         </form>
         <div class="generaltasklist">
-        <h1>Tasks to do eventually</h1>
+            <h1>Tasks to do eventually</h1>
             <ul id="general_todolist" class="todolist">
                 <li>Fill out later</li>
             </ul>
+        </div>
+        
+        <button class="movegeneralchecked">Move all checked items to finished</button>
+
+        <div class="toggle_finishedtasklist">Show Finished Tasks</div>
+        <div class="finishedtasklist">
+            <h1>Finished Tasks</h1>
+            <ul id="finished_tasklist" class="todolist"></ul>
         </div>
     </div>
 </body>
