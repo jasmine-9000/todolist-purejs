@@ -35,21 +35,22 @@
         </div>
         <form class="dailytaskform" id="add_daily_task">
             <textarea id="newdailytaskname" placeholder="New Task..."></textarea>
-            <textarea type="text" id="newdailytaskdate" placeholder="General Date..."></textarea>
+            <input type="text" id="newdailytaskdate" placeholder="General Date...">
             <input type="submit" value="Add New Daily Task">
         </form>
+        <h1 class="header">
+            <span class="b4"></span>
+            <span class="b3"></span>
+            <span class="b2"></span>
+            <span class="b1"></span>
+                <span class="title">Tasks to Finish</span>
+            <span class="b1"></span>
+            <span class="b2"></span>
+            <span class="b3"></span>
+            <span class="b4"></span>
+        </h1>
         <div class="generaltasklist">
-            <h1 class="header">
-                <span class="b4"></span>
-                <span class="b3"></span>
-                <span class="b2"></span>
-                <span class="b1"></span>
-                    <span class="title">Tasks to Finish</span>
-                <span class="b1"></span>
-                <span class="b2"></span>
-                <span class="b3"></span>
-                <span class="b4"></span>
-            </h1>
+            
             <ul id="general_todolist" class="todolist">
                 <!--- example: 
                 <li>
@@ -75,6 +76,11 @@
                 -->
             </ul>
         </div>
+        <form class="dailytaskform" id="add_general_task">
+            <textarea id="newgeneraltaskname" placeholder="New Task..."></textarea>
+            <input type="text" id="newgeneraltaskdate" placeholder="Date...">
+            <input type="submit" value="Add New Task to Finish">
+        </form>
         
         <button id="movegeneralchecked">Finish checked items</button>
 

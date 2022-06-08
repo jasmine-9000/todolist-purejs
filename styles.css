@@ -9,7 +9,8 @@
     border-style: solid;
     padding: 0px 10px 10px 10px;
 }
-.dailytasklist {
+.dailytasklist,
+.generaltasklist {
     border-width: 0px 2px 2px 2px;
     border-color: var(--border-color);
     border-style: solid;
@@ -18,7 +19,9 @@
 }
 /* fill the gap */
 .dailytasklist::before,
-.dailytasklist::after
+.dailytasklist::after,
+.generaltasklist::before,
+.generaltasklist::after
 {
     content: '';
     position: absolute;
@@ -30,13 +33,17 @@
     border-style: solid;
     border-color: var(--border-color);
 }
-.dailytasklist::before {
+.dailytasklist::before,
+.generaltasklist::before {
     left: -2px;
 }
-.dailytasklist::after {
+.dailytasklist::after,
+.generaltasklist::after {
     right: -2px;
 }
 /* end fill gap  */
+
+
 
 h1.header {
     color: #333;
@@ -124,9 +131,9 @@ form.generaltaskform
  { 
     display: flex;
     flex-direction: column;
-    width: 100%;
     column-gap: 2px;
     row-gap: 2px;
+    width: min-content;
 }
 
 /* Source: */
@@ -151,10 +158,14 @@ button {
 }
 
 
-form.dailytaskform input[type="textarea"],
-form.generaltaskform input[type="textarea"] {
+/* text input. make it slightly prettier*/
+form.dailytaskform textarea,
+form.generaltaskform textarea, 
+form.dailytaskform input[type=text],
+form.generaltaskform input[type=text] {
    border: 2px solid pink;
-   height: 125px;
+   background-color:hsl(350, 100%, 97%);
+   height: 3ch;
    font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
    text-align: left;
    justify-content: left;

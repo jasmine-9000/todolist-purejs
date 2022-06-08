@@ -1,7 +1,13 @@
+const PROTOCOL = "http"
+const IP_ADDRESS = "192.168.1.92";
+const PORT = 80;
+
 window.addEventListener("load", async () => {
-    const form = document.getElementById("add_daily_task");
+    const dailytaskform = document.getElementById("add_daily_task");
+    const generaltaskform = document.getElementById("add_general_task");
     const moveitemsbtn = document.getElementById("movegeneralchecked");
-    form.addEventListener("submit", dailytaskformsubmit);
+    dailytaskform.addEventListener("submit", dailytaskformsubmit);
+    generaltaskform.addEventListener("submit", generaltaskformsubmit);
     moveitemsbtn.addEventListener("click", moveitems);
     let promise = retrievedailytaskspromise().then((data) => {
         console.log(data);
@@ -18,12 +24,19 @@ window.addEventListener("load", async () => {
 
 })
 
-const PROTOCOL = "http"
-const IP_ADDRESS = "192.168.1.92";
-const PORT = 80;
 
 function postnewtask(task) {
     const response = fetch(`${PROTOCOL}://${IP_ADDRESS}:${PORT}/db/dailytasks`, 
+                            {
+                                method: 'POST', 
+                                headers: {'Content-Type': 'application/json',
+                                          'Access-Control-Allow-Origin': IP_ADDRESS},
+                                body: JSON.stringify(task)
+                            });
+                            return response;
+}
+function postnewgeneraltask(task) {
+    const response = fetch(`${PROTOCOL}://${IP_ADDRESS}:${PORT}/db/generaltasks`, 
                             {
                                 method: 'POST', 
                                 headers: {'Content-Type': 'application/json',
@@ -206,6 +219,17 @@ function dailytaskformsubmit(e) {
     const date = document.getElementById("newdailytaskdate").value;
     const newtask = {"task": {name: name, date: date}}
     addtasktolistDOM(`${name}: ${date}`, document.getElementById('daily_todolist'))
+    postnewtask(newtask).then(response => response.json())
+        .then(data => {
+            console.log(data);
+        });
+}
+function generaltaskformsubmit(e) {
+    e.preventDefault();
+    const name = document.getElementById("newgeneraltaskname").value;
+    const date = document.getElementById("newgeneraltaskdate").value;
+    const newtask = {"name": name, "date": date}
+    addtasktolistDOM(`${name}: ${date}`, document.getElementById('general_todolist'))
     postnewtask(newtask).then(response => response.json())
         .then(data => {
             console.log(data);
