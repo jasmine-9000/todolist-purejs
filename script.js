@@ -1,10 +1,20 @@
 window.addEventListener("load", async () => {
     const form = document.getElementById("add_daily_task");
+    const moveitemsbtn = document.getElementById("movegeneralchecked");
     form.addEventListener("submit", dailytaskformsubmit);
+    moveitemsbtn.addEventListener("click", moveitems);
     let promise = retrievedailytaskspromise().then((data) => {
         console.log(data);
         displaydailytasks(data);
     });
+    let promise2 = retrievegeneraltaskspromise().then((data) => {
+        console.log(data);
+        displaygeneraltasks(data);
+    });
+    let promise3 = retrievefinishedtaskspromise().then((data) => {
+        console.log(data);
+        displayfinishedtasks(data);
+    })
 
 })
 
@@ -33,8 +43,33 @@ async function retrievedailytaskspromise() {
                             return {};
                         }
                     });
-                        return data;
+                    return data;
                     
+}
+async function retrievegeneraltaskspromise() {
+    const data = fetch(`${PROTOCOL}://${IP_ADDRESS}:${PORT}/db/generaltasks`)
+                    .then(response => {
+                        if(response.ok) {
+                            return response.json();
+                        } else {
+                            console.error("Something went wrong fetching general tasks...")
+                            return {}
+                        }
+                    });
+                    return data;
+}
+
+async function retrievefinishedtaskspromise() {
+    const data = fetch(`${PROTOCOL}://${IP_ADDRESS}:${PORT}/db/finishedtasks`)
+                    .then(response => {
+                        if(response.ok) {
+                            return response.json();
+                        } else {
+                            console.error("Something went wrong fetching general tasks...")
+                            return {}
+                        }
+                    });
+                    return data;
 }
 
 function displaydailytasks(dailytaskslist) {
@@ -50,6 +85,94 @@ function displaydailytasks(dailytaskslist) {
         */
     })
 }
+function displaygeneraltasks(taskslist) {
+    const listelem = document.getElementById("general_todolist");
+    const keys = Object.keys(taskslist);
+    console.log(keys);
+    keys.forEach((key, index) => {
+        addtasktolistDOM(`${key}: ${taskslist[key]}`, listelem)
+        /*
+        let dailytask = document.createElement('li' );
+        dailytask.appendChild(document.createTextNode(`${dailytaskslist[key]}: ${key}`));
+        dailylistelem.appendChild(dailytask);
+        */
+    })
+}
+
+function displayfinishedtasks(taskslist) {
+    const listelem = document.getElementById("finished_tasklist");
+    const keys = Object.keys(taskslist);
+    console.log(keys);
+    keys.forEach((key, index) => {
+        addfinishedtasktolistDOM(`${key}: ${taskslist[key]}`, listelem)
+        /*
+        let dailytask = document.createElement('li' );
+        dailytask.appendChild(document.createTextNode(`${dailytaskslist[key]}: ${key}`));
+        dailylistelem.appendChild(dailytask);
+        */
+    })
+}
+function moveitems() {
+    const todolist = document.getElementById("general_todolist");
+    const items = todolist.querySelectorAll("input[type=checkbox");
+    console.log("move items button:");
+    console.log(items);
+    [...items].forEach((element, index) => {
+        if(element.checked) {
+            let liElem = todolist.children[index];
+            let text = liElem.textContent;
+            let txtarr = text.split(": ");
+            let name = txtarr[0];
+            let date = txtarr[1];
+            console.log("move items 2");
+            console.log(name, date);
+            addElementToFinished(liElem);
+            addElementToFinishedServer(name, date);
+            removeElementFromGeneral(liElem);
+            removeElementFromGeneralServer(name, date);
+        }
+    });
+}
+
+function removeElementFromGeneral(element) {
+    
+
+}
+
+function addElementToFinished(element) {
+    // remove label and checkbox from element
+    console.log(element.querySelector('label'));
+    element.removeChild(element.querySelector('label'))
+    document.getElementById("finished_tasklist").appendChild(element);
+}
+
+function addElementToFinishedServer(name, date) {
+    let task = {"name": name,
+                "date": date}
+    fetch(`${PROTOCOL}://${IP_ADDRESS}:${PORT}/db/finishedtasks`, 
+                            {    
+                                method: 'POST', 
+                                headers: {'Content-Type': 'application/json',
+                                        'Access-Control-Allow-Origin': IP_ADDRESS},
+                                body: JSON.stringify(task)
+                            });
+    console.log(task);
+}
+
+function removeElementFromGeneralServer(name, date) {
+    // remove label and checkbox from element
+    let task = {"name": name,
+                "date": date}
+    fetch(`${PROTOCOL}://${IP_ADDRESS}:${PORT}/db/generaltasks`, 
+                            {    
+                                method: 'DELETE', 
+                                headers: {'Content-Type': 'application/json',
+                                        'Access-Control-Allow-Origin': IP_ADDRESS},
+                                body: JSON.stringify(task)
+                            });
+    console.log(task);
+}
+
 
 function addtasktolistDOM(taskAsString, element,checked=false) {
     let task = document.createElement('li' );
@@ -69,7 +192,11 @@ function addtasktolistDOM(taskAsString, element,checked=false) {
     task.appendChild(document.createTextNode(taskAsString));
     element.appendChild(task);
 }
-
+function addfinishedtasktolistDOM(taskAsString, element) {
+    let task = document.createElement('li' );
+    task.appendChild(document.createTextNode(taskAsString));
+    element.appendChild(task);
+}
 
 
 

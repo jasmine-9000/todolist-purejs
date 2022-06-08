@@ -1,6 +1,6 @@
 {
   "dailytasks": {
-    "123": "",
+    "123": "456",
     "213": "all night long",
     "1234": "5678",
     "1523": "4567",
@@ -16,11 +16,18 @@
     "clean up iphone": "now!!!!",
     "Make your own API and push to heroku!": "this weekend",
     "": "",
-    "Abba": "Gimme Gimme Gimme"
+    "Abba": "Gimme Gimme Gimme",
+    "asdfasd": "",
+    "asdfasdfasdfjkd;sladfsal;jkdfs": ""
   },
   "generaltasks": {
-    "tasks": {
-      "meow at cat": 8
-    }
+    "Catch up!!!!": "eventually",
+    "Professional Stuff": "now!!!!!"
+  },
+  "finishedtasks": {
+    "123": "1234",
+    "fuck me": "123",
+    "Hitlist": "eventually",
+    "100 hours project": "start now!!!!"
   }
 }
