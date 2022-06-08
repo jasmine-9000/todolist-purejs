@@ -42,6 +42,26 @@ app.use(function(req,res,next) {
     res.setHeader('Access-Control-Allow-Credentials', true);
     next();
 })
+
+// IP logging middleware
+app.use((req, res, next) => {
+    let ip = req.headers['x-real-ip'] || req.socket.remoteAddress;
+    if(!ip) {
+        console.log("No IP address found...");
+        next();
+        return;
+    }
+    fs.appendFile('./connectedipaddress.txt', ip + '\r\n', (err, data) => {
+        if(err) {
+            throw err;
+        }
+        console.log(`IP Address ${ip} logged.`);
+    })
+    next();
+})
+
+
+
 /*******************
  * 
  * 
@@ -51,6 +71,8 @@ app.use(function(req,res,next) {
 
 const mongodbURI = "mongodb://localhost:27017/"
 const mclient = new MongoClient(mongodbURI);
+
+
 
 // mclient.connect();
 
@@ -143,8 +165,8 @@ function getGeneralDB() {
 }
 
 
-
 app.get('/', (req, res) => {
+    
     res.sendFile(__dirname + "/index.html");
 })
 app.get('/styles.css', (req, res) => {
