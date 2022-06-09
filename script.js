@@ -1,3 +1,4 @@
+
 const PROTOCOL = "http"
 const IP_ADDRESS = "192.168.1.92";
 const PORT = 80;
@@ -10,8 +11,11 @@ window.addEventListener("load", async () => {
     const dailytaskform = document.getElementById("add_daily_task");
     const generaltaskform = document.getElementById("add_general_task");
     const moveitemsbtn = document.getElementById("movegeneralchecked");
+    const togglefinishedbtn = document.getElementById("toggle_finishedtasklist");
     dailytaskform.addEventListener("submit", dailytaskformsubmit);
     generaltaskform.addEventListener("submit", generaltaskformsubmit);
+    togglefinishedbtn.addEventListener("click", togglefinishedtaskslist );
+    togglefinishedbtn.addEventListener("touchstart", togglefinishedtaskslist );
     moveitemsbtn.addEventListener("click", moveitems);
     let promise = retrievedailytaskspromise().then((data) => {
         if(VERBOSE) {
@@ -138,13 +142,12 @@ async function retrievedailytaskspromise() {
                             return response.json()
                         } else {
                             console.error("Something went wrong fetching daily tasks");
+                            console.error(response.status + ": " + response.statusText);
                             return {};
                         }
                     });
                     return data;
-                    
 }
-
 
 /**
  * 
@@ -405,3 +408,24 @@ function generaltaskformsubmit(e) {
             console.log(data);
         });
 }
+
+function togglefinishedtaskslist() {
+    document.getElementById("finishedtasklist_container").classList.toggle("hidden");
+}
+
+
+
+// from MDN docs
+function retrieveImage(url) {
+    const img = document.querySelector('img');
+    const req  =new Request('flowers.jpg');
+    fetch(req).then(response => {
+        console.log(response.status);
+        response.blob().then(myBlob => {
+            const objectURL = URL.createObjectURL(myBlob);
+            img.src = objectURL;
+        })
+    })
+}
+
+

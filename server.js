@@ -52,11 +52,8 @@ app.use((req, res, next) => {
         return;
     }
     let date_ob = new Date();
-    let date = 0;
-    let string = ip + '\r\n';
-    let str = ` ${date_ob.getHours()}:${date_ob.getMinutes()}:${date_ob.getSeconds()} ${date_ob.getTimezoneOffset()}`;
 
-    fs.appendFile('./connectedipaddress.txt', ip + '\r\n', (err, data) => {
+    fs.appendFile('./connectedipaddress.txt', ip + ' at ' + date_ob.toString() + '\r\n', (err, data) => {
         if(err) {
             throw err;
         }
@@ -97,7 +94,7 @@ fs.readFile(dbFile, (err, data) => {
 })
  
 
-function updateDailyDB(task= null) {
+function updateDailyDB(task = null) {
     if(!task) return;
     let taskName = task.name
     let taskDate = task.date;

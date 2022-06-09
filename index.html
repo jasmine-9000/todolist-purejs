@@ -81,11 +81,12 @@
             <input type="text" id="newgeneraltaskdate" placeholder="Date...">
             <input type="submit" value="Add New Task to Finish">
         </form>
-        
-        <button id="movegeneralchecked">Finish checked items</button>
+        <div class="otherbuttons">
+            <button id="movegeneralchecked">Finish checked items</button>
+            <button id="toggle_finishedtasklist">Show Finished Tasks</button>
+        </div>
 
-        <div class="toggle_finishedtasklist">Show Finished Tasks</div>
-        <div class="finishedtasklist">
+        <div class="finishedtasklist hidden" id="finishedtasklist_container">
             <h1 class="header">
                 <span class="b4"></span>
                 <span class="b3"></span>
