@@ -13,7 +13,8 @@
     "asdfasd": "",
     "asdfasdfasdfjkd;sladfsal;jkdfs": "",
     "Organize Bookmarks": "Organize bookmarks",
-    "Open the door": "Hello world"
+    "Open the door": "Hello world",
+    "Error": "Error"
   },
   "generaltasks": {
     "Hitlist": "eventually",
@@ -29,5 +30,10 @@
     "Sort Files on Computer": "this weekend",
     "Pick up leaves": "any time"
   },
-  "finishedtasks": {}
+  "finishedtasks": {
+    "": "Anytime",
+    "Meow": "meow",
+    "meow": "meowww",
+    "meow\ndsafds": "meowww"
+  }
 }
