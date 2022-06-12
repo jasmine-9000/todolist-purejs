@@ -14,9 +14,21 @@ window.addEventListener("load", async () => {
     const togglefinishedbtn = document.getElementById("toggle_finishedtasklist");
     dailytaskform.addEventListener("submit", dailytaskformsubmit);
     generaltaskform.addEventListener("submit", generaltaskformsubmit);
-    togglefinishedbtn.addEventListener("click", togglefinishedtaskslist );
-    togglefinishedbtn.addEventListener("touchstart", togglefinishedtaskslist );
-    moveitemsbtn.addEventListener("click", moveitems);
+   
+    /* trying to fix click event shenanegans on mobile.*/
+    if(isTouchDevice()) {
+        console.log("hello touch device!");
+        togglefinishedbtn.addEventListener("touchend",togglefinishedtaskslist, false );
+        moveitemsbtn.addEventListener("touchend", moveitems, false);
+    } else {
+        console.log("Hello non-touch device");
+        togglefinishedbtn.addEventListener("click", togglefinishedtaskslist, false);
+        moveitemsbtn.addEventListener("click", moveitems, false);
+    }
+
+
+
+    
     let promise = retrievedailytaskspromise().then((data) => {
         if(VERBOSE) {
             console.log("Daily Tasks retrieved from database: ");
@@ -412,6 +424,12 @@ function generaltaskformsubmit(e) {
 function togglefinishedtaskslist() {
     document.getElementById("finishedtasklist_container").classList.toggle("hidden");
 }
+function isTouchDevice() {
+    return (('ontouchstart' in window) || 
+        (navigator.maxTouchPoints > 0) || 
+        (navigator.msMaxTouchPoints > 0));
+}
+
 
 
 

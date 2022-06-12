@@ -278,10 +278,18 @@ form.generaltaskform input[type=text] {
     display: none;
 }
 .otherbuttons {
-    margin: 0 auto;
-    width: max-content;
-}
+    margin-top: 10px;
+    display: flex;
+    flex-direction:row;
 
+}
+@media screen and (max-width: 725px) {
+    .otherbuttons {
+        flex-direction: column;
+        row-gap: 10px;
+    }
+}
+/* 
 @media screen and (max-width: 500px) {
     
     .otherbuttons {
@@ -290,4 +298,4 @@ form.generaltaskform input[type=text] {
         align-items: center;
         justify-content: center;;
     }
-}
+} */
