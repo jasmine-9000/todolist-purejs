@@ -1,7 +1,7 @@
 {
   "name": "todolist-purejs",
   "version": "1.0.0",
-  "description": "",
+  "description": "A simple todolist",
   "main": "server.js",
   "scripts": {
     "test": "node server.js",
@@ -18,6 +18,7 @@
   "license": "ISC",
   "dependencies": {
     "cors": "^2.8.5",
+    "dotenv": "^16.0.1",
     "express": "^4.18.1",
     "mongodb": "^4.6.0"
   },

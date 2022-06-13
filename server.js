@@ -8,6 +8,10 @@ const express = require('express');             // is an NPM package to install.
 const bodyParser = require('body-parser');      // is an NPM package to install. Parses incoming request bodies in a middleware.
 const fs = require('fs');                       // included with every distro of Node.js
 const cors = require('cors');                   // is an NPM package to install. Resolves CORS errors
+const dotenv = require('dotenv');
+dotenv.config();
+console.log("New process port: ");
+console.log(process.env.PORT);
 // MongoDB stuff
 const {MongoClient} = require('mongodb');
 
@@ -270,8 +274,8 @@ app.get('/db', (req, res) => {
 
 
 
-app.listen(PORT, () => {
-    console.log(`Listening on port ${PORT}...`);
+app.listen(process.env.PORT ||  PORT, () => {
+    console.log(`Listening on port ${process.env.PORT || PORT}...`);
 })
 
 /*

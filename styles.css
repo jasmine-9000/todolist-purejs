@@ -51,6 +51,16 @@
 /* end fill gap  */
 
 
+h1.maintitle {
+    color: #333;
+    text-transform: uppercase;
+    font-size: 32px;
+    font-family: 'Times New Roman', Times, serif;
+    text-align:center;
+}
+h1.maintitle::first-letter {
+    font-size: 36px;
+}
 
 h1.header {
     color: #333;
