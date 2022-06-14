@@ -21,10 +21,10 @@ const {MongoClient} = require('mongodb');
  * 
  ******************************/
 const PORT = 80;                    // port used on the server. Default port should be 80.
-const dbFile = './db-sample.json';         // db file to write to since we don't know how to use databases.
+const dbFile = './db.json';         // db file to write to since we don't know how to use databases.
 //la;kjdsfsf;dlkj
 
-
+//a
 /*********************
  * 
  * GLOBAL OBJECTS AND MIDDLEWARE
@@ -66,6 +66,35 @@ app.use((req, res, next) => {
     next();
 })
 
+// Input logging middleware
+app.use((req, res, next) => {
+    let ip = req.headers['x-real-ip'] || req.socket.remoteAddress;
+    if(!ip) {
+        console.log("No IP address found...");
+        next();
+        return;
+    }
+
+    if(req.method === 'POST') {
+        console.log('POST request made');
+        let POST_body = req.body;
+        let POST_log = ip + " made a POST request. Body: ";
+        if(req.body) {
+            POST_log += JSON.stringify(req.body);
+        } else {
+            POST_log += "none."
+        }
+        fs.appendFile('./postrequests.txt', POST_log, (err, data) => {
+            if(err) throw err;
+
+            console.log("POST Request logged.");
+            console.log(POST_log);
+        })
+    } else if ( req.method === 'GET') {
+        console.log('GET request made');
+    }
+    next();
+})
 
 
 /*******************
