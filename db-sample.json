@@ -1,0 +1,16 @@
+{
+  "dailytasks": {
+    "Take Medication": "Every Day at 9:00am",
+    "Take a Shower": "Every Day",
+    "Do the Dishes": "Every Day",
+    "Write in Diary": "Every Day"
+  },
+  "generaltasks": {
+    "Get Groceries": "Friday at 8pm",
+    "Upload Articles": "Friday at 5pm",
+    "Check Comments": "Never"
+  },
+  "finishedtasks": {
+    "none yet": ""
+  }
+}

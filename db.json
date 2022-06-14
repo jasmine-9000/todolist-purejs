@@ -4,8 +4,7 @@
     "Take a Shower": "Every 2 to 3 days",
     "Do the Dishes": "Every Day",
     "Write in Diary": "Every Day",
-    "do dishes": "anytime",
-    "Organize Bookmarks": "Organize bookmarks"
+    "do dishes": "anytime"
   },
   "generaltasks": {
     "Catch up!!!!": "eventually",
@@ -19,7 +18,8 @@
     "Sort Files on Computer": "this weekend",
     "Pick up leaves": "any time",
     "Create Resume": "Now!",
-    "Hitlist": "Eventually"
+    "Hitlist": "Eventually",
+    "Organize Bookmarks": "Organize bookmarks"
   },
   "finishedtasks": {
     "Hitlist": "eventually",

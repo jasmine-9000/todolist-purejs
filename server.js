@@ -21,7 +21,7 @@ const {MongoClient} = require('mongodb');
  * 
  ******************************/
 const PORT = 80;                    // port used on the server. Default port should be 80.
-const dbFile = './db.json';         // db file to write to since we don't know how to use databases.
+const dbFile = './db-sample.json';         // db file to write to since we don't know how to use databases.
 //la;kjdsfsf;dlkj
 
 

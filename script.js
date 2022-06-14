@@ -50,7 +50,10 @@ window.addEventListener("load", async () => {
         }
         displayfinishedtasks(data);
     })
-
+    /* variable names  */
+    const NAME = "Jasmine";
+    const name_container = document.querySelector(".owner_name");
+    name_container.appendChild(document.createTextNode(NAME))
 })
 
 
