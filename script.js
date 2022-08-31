@@ -5,6 +5,11 @@ const PORT = 80;
 let DEBUG = true;
 let VERBOSE = true;
 
+// regex literal
+const re = /ab+c/
+// regex object
+let reobjc = new RegExp(/ab+c/, 'i');
+const re1 = /\w+/;
 /* Only when the window is loaded do you read the DOM. */
 
 window.addEventListener("load", async () => {
